@@ -15,6 +15,3 @@ snow ... etc.
 ### Project Contributions
 
 ##### Haitham Mohamed Ghanem [@Haithamize](https://github.com/Haithamize)
-- Trip Alert
-- Maps Start
-- Bubble
