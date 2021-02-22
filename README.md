@@ -17,16 +17,16 @@ snow ... etc.
 ##### Haitham Mohamed Ghanem [@Haithamize](https://github.com/Haithamize)
 
 
-#Technologies used
-.Kotlin
-.Navigation component UI (Naviagtion) & Fragment 
-.Retrofit (REST API's)
-.Kotlin coroutines .Room Database 
-.WorkManager 
-.SharedPreferences
-.Map 
-.Location 
-.Glide 
-.Material Design 
-.Architecture Pattern (MVVM) 
-.LiveData and MutableLiveData
+### Technologies used
+-Kotlin
+-Navigation component UI (Naviagtion) & Fragment 
+-Retrofit (REST API's)
+-Kotlin coroutines .Room Database 
+-WorkManager 
+-SharedPreferences
+-Map 
+-Location 
+-Glide 
+-Material Design 
+-Architecture Pattern (MVVM) 
+-LiveData and MutableLiveData
