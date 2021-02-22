@@ -18,15 +18,15 @@ snow ... etc.
 
 
 ### Technologies used
--Kotlin
--Navigation component UI (Naviagtion) & Fragment 
--Retrofit (REST API's)
--Kotlin coroutines .Room Database 
--WorkManager 
--SharedPreferences
--Map 
--Location 
--Glide 
--Material Design 
--Architecture Pattern (MVVM) 
--LiveData and MutableLiveData
+- Kotlin
+- Navigation component UI (Naviagtion) & Fragment
+- Retrofit (REST API's)
+- Kotlin coroutines .Room Database
+- WorkManager
+- SharedPreferences
+- Map
+- Location
+- Glide
+- Material Design
+- Architecture Pattern (MVVM)
+- LiveData and MutableLiveData
