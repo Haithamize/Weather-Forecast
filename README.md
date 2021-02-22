@@ -1,4 +1,4 @@
-# Weather-Forecast(Weather Wizard)
+# Weather-Forecast(Weather Wizard) --> [Works better in night mode]
 
 
 Android Mobile Application that displays the weather status and the temperature
