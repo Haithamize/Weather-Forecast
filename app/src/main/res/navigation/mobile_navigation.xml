@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/home">
+
+    <fragment
+        android:id="@+id/home"
+        android:name="com.haithamghanem.weatherwizard.ui.weather.current.CurrentWeatherFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/current_weather_fragment" />
+    <fragment
+        android:id="@+id/favourite"
+        android:name="com.haithamghanem.weatherwizard.ui.weather.features.favorites.FavoritePlaces"
+        android:label="@string/favorite"
+        tools:layout="@layout/favorite_list">
+        <action
+            android:id="@+id/action_favourite_to_favoriteDetailsFragment"
+            app:destination="@id/favoriteDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/alerts"
+        android:name="com.haithamghanem.weatherwizard.ui.weather.features.alerts.AlertFragment"
+        android:label="@string/alerts"
+        tools:layout="@layout/alerts_fragment" />
+    <fragment
+        android:id="@+id/settings"
+        android:name="com.haithamghanem.weatherwizard.ui.settings.SettingsFragment"
+        android:label="@string/settings" />
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.haithamghanem.weatherwizard.ui.weather.features.favorites.MapFragment"
+        android:label="@string/map"
+        tools:layout="@layout/favorite_fragment_map">
+        <action
+            android:id="@+id/action_mapFragment_to_favourite"
+            app:destination="@id/favourite" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteDetailsFragment"
+        android:name="com.haithamghanem.weatherwizard.ui.weather.features.favorites.FavoriteDetailsFragment"
+        android:label="@string/favorite" />
+</navigation>

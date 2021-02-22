@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">متنبئ الطقس</string>
+    <string name="favorite">المفضلة</string>
+    <string name="home">الرئيسية</string>
+    <string name="alerts">التنبيهات</string>
+    <string name="settings">الإعدادات</string>
+    <string name="save">حفظ</string>
+    <string name="cancel">إلغاء</string>
+    <string name="pressure">الضغط</string>
+    <string name="windSpeed">سرعة الرياح</string>
+    <string name="humidity">الرطوبة</string>
+    <string name="feelsLike">درجة الحرارة كأنها </string>
+    <string name="saveLocation">حفظ الموقع</string>
+    <string name="currentLocation">الموقع الحالي</string>
+    <string name="weatherLocation">موقع الطقس</string>
+    <string name="useDeviceLocation">استخدام موقع الجهاز</string>
+    <string name="allowWeatherToGetYourLocation">السماح للتطبيق بالحصول علي موقعك</string>
+    <string name="location">اختر الموقع</string>
+    <string name="locationFromWhichWeatherIsDisplayed">الموقع الذي يظهر منه الطقس</string>
+    <string name="units">الوحدات</string>
+    <string name="unitSystem">وحدة القياس</string>
+    <string name="metric">النظام المتري</string>
+    <string name="imperial">النظام الإمبراطوري</string>
+    <string name="standard">النظام الدولي</string>
+    <string name="language">اللغة</string>
+    <string name="languageSystem">نظام اللغة</string>
+    <string name="en">الإنجليزية</string>
+    <string name="ar">العربية</string>
+    <string name="notifications">الإشعارات</string>
+    <string name="allowNotifications">السماح بالإشعارات</string>
+    <string name="enableAlarmNotifications">تفعيل !خطارات التنبيه</string>
+    <string name="chooseBetweenNormalAndAlarm">فعل !خطارات التنبيه</string>
+    <string name="map">الخريطة</string>
+    <string name="goToCustomLocation">الذهاب الي الموقع</string>
+    <string name="confirm">تأكيد</string>
+    <string name="areYouSure">هل أنت متأكد؟</string>
+    <string name="Yes">نعم</string>
+    <string name="No">لا</string>
+    <string name="ok">حسناّ</string>
+    <string name="mapActivated">تم تفعيل الخريطة ، استمتع بالرحلة!</string>
+    <string name="offline">أنت غير متصل بالإنترنت ، يرجى التحقق من اتصالك بالإنترنت لتتمكن من اختيار الموقع.</string>
+    <string name="permissionDenied">الإذن رفض من قبل المستخدم.</string>
+    <string name="gpsOff">تم إيقاف تشغيل نظام تحديد المواقع العالمي (GPS) ، يرجى تشغيله إذا كنت تريد الاطلاع على بيانات الطقس لموقعك الحالي.</string>
+    <string name="offlineNotification">أنت غير متصل بالإنترنت ، يرجى التحقق من اتصالك بالإنترنت.</string>
+
+
+    <string name="navigateFreely">تنقل بحرية عبر الخريطة بأكملها وقم بتعيين علامة على الموقع الذي تريده لمعرفة أحدث بيانات الطقس.</string>
+    <string name="instructions">التعليمات</string>
+    <string name="overRelayPermission">"السماح لمتنبيْ الطقس بالعرض فوق التطبيقات الأخرى."</string>
+    <string name="overRelayPermissionDenied">يجب أن يحصل التطبيق على هذا الإذن لوظيفة التنبيه.</string>
+
+
+
+</resources>

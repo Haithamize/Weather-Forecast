@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:icon="@drawable/ic_baseline_settings_24"
+    >
+    <PreferenceCategory
+        android:title="@string/weatherLocation">
+        <SwitchPreference
+            android:key="USE_DEVICE_LOCATION"
+            android:title="@string/useDeviceLocation"
+            android:summary="@string/allowWeatherToGetYourLocation"
+            android:defaultValue="true"
+            android:disableDependentsState="true"
+            />
+        <Preference
+            android:key="CUSTOM_LOCATION"
+            android:title="@string/location"
+            android:summary="@string/locationFromWhichWeatherIsDisplayed"
+            android:dependency="USE_DEVICE_LOCATION"
+            />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/units">
+        <ListPreference
+            android:key="UNIT_SYSTEM"
+            android:title="@string/unitSystem"
+            android:summary="%s"
+            android:defaultValue="metric"
+            android:entries="@array/unitSystemEntries"
+            android:entryValues="@array/unitSystemValues"
+            />
+    </PreferenceCategory>
+    <PreferenceCategory app:title="@string/language">
+        <ListPreference
+            android:key="LANGUAGE_SYSTEM"
+            android:title="@string/languageSystem"
+            android:summary="%s"
+            android:defaultValue="en"
+            android:entries="@array/langSystemEntries"
+            android:entryValues="@array/langSystemValues"
+            />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/notifications">
+        <CheckBoxPreference
+            android:key="USE_NOTIFICATIONS_ALERT"
+            app:title="@string/allowNotifications"
+            android:defaultValue="false"
+            />
+
+        <CheckBoxPreference app:title="@string/enableAlarmNotifications"
+            android:key="ALARM_TYPE"
+            android:defaultValue="false"
+            android:summary="@string/chooseBetweenNormalAndAlarm"/>
+
+
+
+    </PreferenceCategory>
+</PreferenceScreen>

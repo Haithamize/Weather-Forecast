@@ -1,0 +1,74 @@
+<resources>
+    <string name="app_name">Weather Wizard</string>
+    <!--    <string name="dailyWeatherIcon">dailyWeatherIcon</string>-->
+    <!--    <string name="hourlyWeatherIcon">hourlyWeatherIcon</string>-->
+    <string name="favorite">Favorite</string>
+    <string name="home">Home</string>
+    <string name="alerts">Alerts</string>
+    <string name="settings">Settings</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="pressure">Pressure</string>
+    <string name="windSpeed">Wind Speed</string>
+    <string name="humidity">Humidity</string>
+    <string name="saveLocation">Save Location</string>
+    <string name="currentLocation">Current Location</string>
+    <string name="feelsLike">Feels Like </string>
+    <string name="map">Map</string>
+    <string name="confirm">Confirm</string>
+    <string name="areYouSure">Are you sure?</string>
+    <string name="Yes">Yes</string>
+    <string name="No">No</string>
+    <string name="ok">Ok</string>
+    <string name="instructions">Instructions</string>
+    <string name="mapActivated">"Map activated, Enjoy the ride!"</string>
+    <string name="navigateFreely">Navigate freely through the entire map and set a mark on your desired location to see it\'s latest weather data</string>
+    <string name="overRelayPermission">Allow weather wizard to display over other apps.</string>
+    <string name="overRelayPermissionDenied">The Application must have this permission for the alert functionality.</string>
+    <string name="offline">You\'re offline, please check your internet connection to be able to choose a location</string>
+    <string name="permissionDenied">Permission denied by the user.</string>
+    <string name="gpsOff">Your GPS is turned off, please turn it on if you want to see the weather data for your current location</string>
+    <string name="offlineNotification">You\'re offline, Please check your internet connection.</string>
+
+    <!--    Settings Screen-->
+    <string name="weatherLocation">Weather Location</string>
+    <string name="useDeviceLocation">Use Device Location</string>
+    <string name="allowWeatherToGetYourLocation">Allow Weather Wizard to get your location</string>
+    <string name="location">Choose A Location</string>
+    <string name="locationFromWhichWeatherIsDisplayed">The location from which the weather is displayed</string>
+    <string name="units">Units</string>
+    <string name="unitSystem">Unit System</string>
+    <string name="metric">Metric</string>
+    <string name="imperial">Imperial</string>
+    <string name="standard">Standard</string>
+    <string name="language">Language</string>
+    <string name="languageSystem">Language System</string>
+    <string name="en">English</string>
+    <string name="ar">Arabic</string>
+    <string name="notifications">Notifications</string>
+    <string name="allowNotifications">Allow Notifications</string>
+    <string name="enableAlarmNotifications">Alarm Notifications</string>
+    <string name="chooseBetweenNormalAndAlarm">Enable alarm notifications</string>
+    <string name="goToCustomLocation">Go to Location</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
+
+    <!--    <string name="unit_system">UNIT_SYSTEM</string>-->
+    <!--    &lt;!&ndash; Preference Titles &ndash;&gt;-->
+    <!--    <string name="messages_header">Messages</string>-->
+    <!--    <string name="sync_header">Sync</string>-->
+
+    <!--    &lt;!&ndash; Messages Preferences &ndash;&gt;-->
+    <!--    <string name="signature_title">Your signature</string>-->
+    <!--    <string name="reply_title">Default reply action</string>-->
+
+    <!--    &lt;!&ndash; Sync Preferences &ndash;&gt;-->
+    <!--    <string name="sync_title">Sync email periodically</string>-->
+    <!--    <string name="attachment_title">Download incoming attachments</string>-->
+    <!--    <string name="attachment_summary_on">Automatically download attachments for incoming emails-->
+    <!--    </string>-->
+    <!--    <string name="attachment_summary_off">Only download attachments when manually requested</string>-->
+    <!--    &lt;!&ndash; TODO: Remove or change this placeholder text &ndash;&gt;-->
+    <!--    <string name="hello_blank_fragment">Hello blank fragment</string>-->
+    <!--    <string name="feels_like">Feels Like</string>-->
+</resources>
