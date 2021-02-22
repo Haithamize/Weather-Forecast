@@ -86,7 +86,11 @@ class FavoriteDetailsFragment : Fragment() {
                 val txtLastUpdatedVal = TimeFormatChanger.convertTime(it.current.dt.toLong())
                 txtFavLastUpdated.text = " اّخر مرة للتحديث في $txtLastUpdatedVal"
             }
+
+            txtFavPressure.text = it.current.pressure.toString() +" "+getString(R.string.pressureUnit)
             txtFavHumidity.text = it.current.humidity.toString() + "%"
+
+
             if (prefrences.getString("UNIT_SYSTEM", "") == "metric") {
                 txtFavTemperature.text = it.current.temp.toString() + "\u00B0" + "C"
                 if (prefrences.getString("LANGUAGE_SYSTEM", "") == "en") {
@@ -121,7 +125,6 @@ class FavoriteDetailsFragment : Fragment() {
                         it.current.feels_like.toString() + "K" + " درجة الحرارة كأنها"
                 }
             }
-            txtFavPressure.text = it.current.pressure.toString() + " hPa"
             txtFavWeatherDescription.text = it.current.weather[0].description
 
             val gcd = Geocoder(context, Locale.getDefault())

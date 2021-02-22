@@ -43,6 +43,8 @@
     <string name="permissionDenied">الإذن رفض من قبل المستخدم.</string>
     <string name="gpsOff">تم إيقاف تشغيل نظام تحديد المواقع العالمي (GPS) ، يرجى تشغيله إذا كنت تريد الاطلاع على بيانات الطقس لموقعك الحالي.</string>
     <string name="offlineNotification">أنت غير متصل بالإنترنت ، يرجى التحقق من اتصالك بالإنترنت.</string>
+    <string name="pressureUnit">باسكال</string>
+
 
 
     <string name="navigateFreely">تنقل بحرية عبر الخريطة بأكملها وقم بتعيين علامة على الموقع الذي تريده لمعرفة أحدث بيانات الطقس.</string>

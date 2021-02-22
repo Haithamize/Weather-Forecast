@@ -1,5 +1,6 @@
 package com.haithamghanem.weatherwizard.ui.settings
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.MarkerOptions
 import com.haithamghanem.weatherwizard.R
 import com.haithamghanem.weatherwizard.data.model.DataSettings
+import com.haithamghanem.weatherwizard.ui.MainActivity
 import com.haithamghanem.weatherwizard.ui.weather.current.CurrentWeatherViewModel
 import kotlinx.android.synthetic.main.favorite_fragment_map.*
 import kotlinx.android.synthetic.main.fragment_custom_location_map.*
@@ -49,6 +51,8 @@ class CustomLocationMapFragment : Fragment() {
 
 
             activity?.onBackPressed()
+            val intent = Intent(this.requireContext(), MainActivity::class.java)
+            startActivity(intent)
         }
 
 

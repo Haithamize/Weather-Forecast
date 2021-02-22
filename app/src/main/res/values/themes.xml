@@ -11,18 +11,20 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <item name="android:textColor">#ffff</item>
+        <item name="android:textColor">@color/purple_500</item>
         <item name="android:headerBackground">@color/teal_200</item>
         <item name="android:colorActivatedHighlight">@color/teal_200</item>
         <item name="android:colorBackground">@color/black</item>
         <item name="android:colorForeground">@color/white</item>
+        <item name="android:color">@color/white</item>
+        <item name="android:forceDarkAllowed">true</item>
 
         <!-- Customize your theme here. -->
     </style>
 
     <style name="ToolbarTheme" parent="ThemeOverlay.MaterialComponents.ActionBar">
         <item name="android:textColorPrimary">@android:color/white</item>
-        <item name="android:textColorSecondary">#EEEEEE</item>
+        <item name="android:textColorSecondary">@color/white</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>

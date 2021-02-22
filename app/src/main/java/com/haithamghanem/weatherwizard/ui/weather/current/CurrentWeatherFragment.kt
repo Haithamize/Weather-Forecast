@@ -270,7 +270,10 @@ class CurrentWeatherFragment : Fragment() {
                     val txtLastUpdatedVal = TimeFormatChanger.convertTime(it.current.dt.toLong())
                     txtLastUpdated.text = " اّخر مرة للتحديث في $txtLastUpdatedVal"
                 }
+
+                txtPressure.text = it.current.pressure.toString() +" "+getString(R.string.pressureUnit)
                 txtHumidity.text = it.current.humidity.toString() + "%"
+
                 if (unit == "metric") {
                     txtTemperature.text = it.current.temp.toString() + "\u00B0"+"C"
                     if(prefrences.getString("LANGUAGE_SYSTEM","") == "en") {
@@ -300,7 +303,7 @@ class CurrentWeatherFragment : Fragment() {
                         feelsLikeTemp.text = it.current.feels_like.toString() +"K" +" درجة الحرارة كأنها"
                     }
                 }
-                txtPressure.text = it.current.pressure.toString() + " hPa"
+
                 txtWeatherDescription.text = it.current.weather[0].description
 
                 val gcd = Geocoder(context, Locale.getDefault())

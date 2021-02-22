@@ -147,6 +147,7 @@ class FavoritePlacesFragmentAdapter(
 ////********************
         holder.favoriteWeatherIcon.setOnClickListener {
             showDetails()
+
             if (prefrences.getString("LANGUAGE_SYSTEM", "") == "en") {
                 if (prefrences.getString("UNIT_SYSTEM", "") == "metric") {
                     holder.favoriteTemprature.text =
@@ -183,7 +184,7 @@ class FavoritePlacesFragmentAdapter(
                     holder.favoriteHumidity.text =
                         arrayListOfFavoriteEntities[position].favoriteCurrent.humidity.toString() + " %"
                     holder.favoritePressure.text =
-                        arrayListOfFavoriteEntities[position].favoriteCurrent.pressure.toString() + " hPa"
+                        arrayListOfFavoriteEntities[position].favoriteCurrent.pressure.toString() + " باسكال"
                     holder.favoriteWindSpeed.text =
                         arrayListOfFavoriteEntities[position].favoriteCurrent.wind_speed.toString() + " متر/الثانية"
                 } else if (prefrences.getString("UNIT_SYSTEM", "") == "imperial") {
@@ -192,7 +193,7 @@ class FavoritePlacesFragmentAdapter(
                     holder.favoriteHumidity.text =
                         arrayListOfFavoriteEntities[position].favoriteCurrent.humidity.toString() + " %"
                     holder.favoritePressure.text =
-                        arrayListOfFavoriteEntities[position].favoriteCurrent.pressure.toString() + " hPa"
+                        arrayListOfFavoriteEntities[position].favoriteCurrent.pressure.toString() + " باسكال"
                     holder.favoriteWindSpeed.text =
                         arrayListOfFavoriteEntities[position].favoriteCurrent.wind_speed.toString() + " ميل/الساعة"
                 } else if (prefrences.getString("UNIT_SYSTEM", "") == "standard") {
@@ -201,7 +202,7 @@ class FavoritePlacesFragmentAdapter(
                     holder.favoriteHumidity.text =
                         arrayListOfFavoriteEntities[position].favoriteCurrent.humidity.toString() + " %"
                     holder.favoritePressure.text =
-                        arrayListOfFavoriteEntities[position].favoriteCurrent.pressure.toString() + " hPa"
+                        arrayListOfFavoriteEntities[position].favoriteCurrent.pressure.toString() + " باسكال"
                     holder.favoriteWindSpeed.text =
                         arrayListOfFavoriteEntities[position].favoriteCurrent.wind_speed.toString() + " متر/الثانية"
                 }

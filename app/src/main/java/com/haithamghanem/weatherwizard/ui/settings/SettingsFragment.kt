@@ -74,19 +74,19 @@ class SettingsFragment : PreferenceFragmentCompat() {
                     Toast.LENGTH_LONG
                 ).show()
             } else {
-                if(isFirstTime) {
-                    AlertDialog.Builder(this.requireContext())
-                        .setTitle(R.string.instructions)
-                        .setMessage(R.string.navigateFreely)
-                        .setPositiveButton(R.string.ok) { dialogInterface: DialogInterface?, i: Int ->
-                            Toast.makeText(
-                                this.requireContext(),
-                                R.string.mapActivated,
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }.create().show()
-                    isFirstTime = false
-                }
+//                if(isFirstTime) {
+//                    AlertDialog.Builder(this.requireContext())
+//                        .setTitle(changinglanguageOfTitle())
+//                        .setMessage(changinglanguageOfMessage())
+//                        .setPositiveButton(R.string.ok) { dialogInterface: DialogInterface?, i: Int ->
+//                            Toast.makeText(
+//                                this.requireContext(),
+//                                R.string.mapActivated,
+//                                Toast.LENGTH_LONG
+//                            ).show()
+//                        }.create().show()
+//                    isFirstTime = false
+//                }
 
                 val customLocationMapFragment=CustomLocationMapFragment()
                 activity?.supportFragmentManager?.beginTransaction()
@@ -171,22 +171,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         }
     }
 
-//    private fun setLocale(langCode: String){
-//        val locale = Locale(langCode)
-//        Locale.setDefault(locale)
-//        val resources = resources
-//        val configuration = resources.configuration
-//        configuration.locale = locale
-//        resources.updateConfiguration(configuration, resources.displayMetrics)
-//    }
-//
-//    fun changeLanguage(){
-//        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.context)
-//        val language = sharedPreferences.getString("LANGUAGE_SYSTEM","")
-//        if (language != null) {
-//            setLocale(language)
-//        }
-//    }
+
 
     private fun setPeriodicWorkRequest() {
         val constraints =
@@ -234,6 +219,24 @@ class SettingsFragment : PreferenceFragmentCompat() {
 //        }
 //        ft.commit()
 //    }
+
+    fun changinglanguageOfTitle(): String{
+        val lang = prefrences.getString("LANGUAGE_SYSTEM", "")
+        if(lang == "en"){
+            return "Instructions"
+        }else{
+            return "تعليمات"
+        }
+    }
+
+    fun changinglanguageOfMessage(): String{
+        val lang = prefrences.getString("LANGUAGE_SYSTEM", "")
+        if(lang == "en"){
+            return "Navigate freely through the entire map and set a mark on your desired location to see it's latest weather data"
+        }else{
+            return "تنقل بحرية عبر الخريطة بأكملها وقم بتعيين علامة على الموقع الذي تريده لمعرفة أحدث بيانات الطقس."
+        }
+    }
 
 
 

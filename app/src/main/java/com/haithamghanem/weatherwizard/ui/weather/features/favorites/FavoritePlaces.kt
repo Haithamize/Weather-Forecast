@@ -28,6 +28,7 @@ class FavoritePlaces : Fragment() ,FavoritePlacesFragmentAdapter.OnItemClickList
 
     private val connectivity = Connectivity
     lateinit var favoritePlaceViewModel: FavoritePlaceViewModel
+    val dataSettings = DataSettings
 //    private val db = ForecastDatabase.getDatabase(this.requireContext())
 
     private lateinit var favoriteListAdapter: FavoritePlacesFragmentAdapter
@@ -38,11 +39,9 @@ class FavoritePlaces : Fragment() ,FavoritePlacesFragmentAdapter.OnItemClickList
         get() = PreferenceManager.getDefaultSharedPreferences(this.requireContext())
 
 
-
-
     companion object {
         fun newInstance() = FavoritePlaces()
-        private var isFirstTime:Boolean = true
+        private var isFirstTime: Boolean = true
     }
 
 
@@ -50,12 +49,14 @@ class FavoritePlaces : Fragment() ,FavoritePlacesFragmentAdapter.OnItemClickList
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        loadDetails()
         return inflater.inflate(R.layout.favorite_list, container, false)
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         favoritePlaceViewModel = ViewModelProvider(this).get(FavoritePlaceViewModel::class.java)
 
@@ -69,19 +70,19 @@ class FavoritePlaces : Fragment() ,FavoritePlacesFragmentAdapter.OnItemClickList
                     Toast.LENGTH_LONG
                 ).show()
             } else {
-                    if(isFirstTime) {
-                        AlertDialog.Builder(this.requireContext())
-                            .setTitle(changinglanguageOfTitle())
-                            .setMessage(changinglanguageOfMessage())
-                            .setPositiveButton(R.string.ok) { dialogInterface: DialogInterface?, i: Int ->
-                                Toast.makeText(
-                                    this.requireContext(),
-                                    R.string.mapActivated,
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }.create().show()
-                        isFirstTime = false
-                    }
+//                if (isFirstTime) {
+//                    AlertDialog.Builder(this.requireContext())
+//                        .setTitle(changinglanguageOfTitle())
+//                        .setMessage(changinglanguageOfMessage())
+//                        .setPositiveButton(R.string.ok) { dialogInterface: DialogInterface?, i: Int ->
+//                            Toast.makeText(
+//                                this.requireContext(),
+//                                R.string.mapActivated,
+//                                Toast.LENGTH_LONG
+//                            ).show()
+//                        }.create().show()
+//                    isFirstTime = false
+//                }
 
                 val mapFragment = MapFragment()
                 activity?.supportFragmentManager?.beginTransaction()
@@ -94,20 +95,21 @@ class FavoritePlaces : Fragment() ,FavoritePlacesFragmentAdapter.OnItemClickList
         getLocalDataSource()
         // setData()
     }
-    fun changinglanguageOfTitle(): String{
+
+    fun changinglanguageOfTitle(): String {
         val lang = prefrences.getString("LANGUAGE_SYSTEM", "")
-        if(lang == "en"){
+        if (lang == "en") {
             return "Instructions"
-        }else{
+        } else {
             return "تعليمات"
         }
     }
 
-    fun changinglanguageOfMessage(): String{
+    fun changinglanguageOfMessage(): String {
         val lang = prefrences.getString("LANGUAGE_SYSTEM", "")
-        if(lang == "en"){
+        if (lang == "en") {
             return "Navigate freely through the entire map and set a mark on your favorite place then make sure to save that location."
-        }else{
+        } else {
             return "تنقل بحرية عبر الخريطة بأكملها وقم بتعيين علامة على مكانك المفضل ثم تأكد من حفظ هذا الموقع."
         }
     }
@@ -141,7 +143,7 @@ class FavoritePlaces : Fragment() ,FavoritePlacesFragmentAdapter.OnItemClickList
     }
 
     override fun onItemClick(position: Int) {
-        if(Connectivity.isOnline(this.requireContext())) {
+        if (Connectivity.isOnline(this.requireContext())) {
             Log.d("FavoAdapter", "onBindViewHolder: Clicked in adapter")
 
             favoritePlaceViewModel.setFavoriteDetailsData(
@@ -155,10 +157,37 @@ class FavoritePlaces : Fragment() ,FavoritePlacesFragmentAdapter.OnItemClickList
                 ?.replace(R.id.favPlacesFrameLayout, favoriteDetailsFragment)
                 ?.addToBackStack("favoriteDetailsFragment")
                 ?.commit()
-        }else{
-            Toast.makeText(this.requireContext(), R.string.offlineNotification,Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(this.requireContext(), R.string.offlineNotification, Toast.LENGTH_LONG)
+                .show()
         }
 
 
+    }
+
+    private fun loadDetails() {
+
+        val sp = PreferenceManager.getDefaultSharedPreferences(context?.applicationContext)
+        val unit_system = sp.getString("UNIT_SYSTEM", "")
+        val language_system = sp.getString("LANGUAGE_SYSTEM", "")
+        val deviceLocation = sp.getBoolean("USE_DEVICE_LOCATION", false)
+        val notifications = sp.getBoolean("USE_NOTIFICATIONS_ALERT", false)
+        val customLocations = sp.getString("CUSTOM_LOCATION", "")
+
+        if (unit_system != null) {
+            dataSettings.unitSystem = unit_system
+        }
+
+        if (language_system != null) {
+            dataSettings.languageSystem = language_system
+        }
+
+        dataSettings.deviceLocation = deviceLocation
+
+        dataSettings.notifications = notifications
+
+        if (customLocations != null) {
+            dataSettings.customLocations = customLocations
+        }
     }
 }

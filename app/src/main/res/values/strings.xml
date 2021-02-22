@@ -29,6 +29,7 @@
     <string name="permissionDenied">Permission denied by the user.</string>
     <string name="gpsOff">Your GPS is turned off, please turn it on if you want to see the weather data for your current location</string>
     <string name="offlineNotification">You\'re offline, Please check your internet connection.</string>
+    <string name="pressureUnit">hPa</string>
 
     <!--    Settings Screen-->
     <string name="weatherLocation">Weather Location</string>
