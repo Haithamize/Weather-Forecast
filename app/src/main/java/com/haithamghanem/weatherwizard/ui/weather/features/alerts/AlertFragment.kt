@@ -151,7 +151,6 @@ class AlertFragment : Fragment() {
             val alert = builder.create()
             alert.show()
         }
-
     }
 
     fun changinglanguageOfTitle(): String{
@@ -208,10 +207,13 @@ class AlertFragment : Fragment() {
         val inputTime = Data.Builder()
             .putLong(INPUT_TIME, cal.timeInMillis)
             .build()
+//        Log.d("time sent", "setOneTimeWorkRequest: ${cal.timeInMillis} ")
+
 
 
         val current = Calendar.getInstance().timeInMillis
         val delay = cal.timeInMillis - current
+
 
         val workManager: WorkManager? = this.context?.let { WorkManager.getInstance(it) }
         val uploadRequest = OneTimeWorkRequest.Builder(UploadWorker::class.java)

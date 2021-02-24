@@ -58,47 +58,8 @@ class UploadWorker(context: Context, params: WorkerParameters) : Worker(context,
         try {
             loadSettings()
             getResponseFromApi()
+            Log.d("alertBody", "$listOfAlerts")
 
-            if (listOfAlerts?.isNotEmpty() == true) { // de fe 7alet lw fe alerts rag3a m3 el response
-                val inputime = inputData.getLong(INPUT_TIME, 0)
-
-                if ((inputime <= listOfAlerts?.get(0)?.end!!) && (inputime >= listOfAlerts?.get(0)?.end!!)) {
-                    if (!dataSettings.alarmType) { //de fe 7alet eno 3ayz notifications type
-                        makeStatusNotification(
-                            listOfAlerts!![0].event,
-                            listOfAlerts!![0].description,
-                            applicationContext
-                        )
-                    } else {      //de fe 7alet eno 3ayz alarm type
-                        AlertActivity.title = listOfAlerts!![0].event
-                        AlertActivity.message = listOfAlerts!![0].description
-
-                        Handler(Looper.getMainLooper()).post(Runnable {
-                            val intent = Intent(applicationContext, AlertActivity::class.java)
-                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                            applicationContext.startActivity(intent)
-                        })
-                    }
-                }
-
-            } else {  //de fe 7alet en mfish alerts rag3a m3 el response
-                if (!dataSettings.alarmType) {
-                    makeStatusNotification(
-                        changinglanguageOfTitle(),
-                        changinglanguageOfMessage(),
-                        applicationContext
-                    )
-                } else {
-                    AlertActivity.title = changinglanguageOfTitle()
-                    AlertActivity.message = changinglanguageOfMessage()
-                    Handler(Looper.getMainLooper()).post(Runnable {
-                        val intent = Intent(applicationContext, AlertActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                        applicationContext.startActivity(intent)
-                    })
-                }
-
-            }
 
             return Result.success()
         } catch (e: Exception) {
@@ -126,13 +87,17 @@ class UploadWorker(context: Context, params: WorkerParameters) : Worker(context,
         }
     }
 
-
+//68.3963
+    //36.9419 //dol yom 23 el sa3a 5 pm byegi feha alert
 
     private fun getResponseFromApi() {
         GlobalScope.launch(Dispatchers.IO) {
+            Log.d("latlonFromWorker", "getResponseFromApi: ${dataSettings.latitude} // ${dataSettings.longitude}")
             val response = RetrofitClient.getWeatherService(
-                dataSettings.latitude,
-                dataSettings.longitude,
+                dataSettings.latitude
+                ,
+                dataSettings.longitude
+                ,
                 dataSettings.unitSystem,
                 dataSettings.languageSystem
             )
@@ -144,6 +109,56 @@ class UploadWorker(context: Context, params: WorkerParameters) : Worker(context,
                     Log.d("response", "getResponseFromApi: ${response.body()}")
 
                     listOfAlerts = response.body()?.alerts
+
+
+
+                    if (listOfAlerts?.isNotEmpty() == true) { // de fe 7alet lw fe alerts rag3a m3 el response
+
+                        for(item in listOfAlerts!!) {
+                            val inputime = inputData.getLong(INPUT_TIME, 0)
+                            Log.d("timeSendInWorker", "setOneTimeWorkRequest: ${inputime} ")
+
+
+                            if ((inputime <= item.end!! * 1000) && (inputime >= item.start!! * 1000)
+                            ) {
+
+                                if (!dataSettings.alarmType) { //de fe 7alet eno 3ayz notifications type
+                                    makeStatusNotification(
+                                        item.event,
+                                        item.description,
+                                        applicationContext
+                                    )
+                                } else {      //de fe 7alet eno 3ayz alarm type
+                                    AlertActivity.title = item.event
+                                    AlertActivity.message = item.description
+
+                                    Handler(Looper.getMainLooper()).post(Runnable {
+                                        val intent =
+                                            Intent(applicationContext, AlertActivity::class.java)
+                                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                                        applicationContext.startActivity(intent)
+                                    })
+                                }
+                            }
+                        }
+                    } else {  //de fe 7alet en mfish alerts rag3a m3 el response
+                        if (!dataSettings.alarmType) {
+                            makeStatusNotification(
+                                changinglanguageOfTitle(),
+                                changinglanguageOfMessage(),
+                                applicationContext
+                            )
+                        } else {
+                            AlertActivity.title = changinglanguageOfTitle()
+                            AlertActivity.message = changinglanguageOfMessage()
+                            Handler(Looper.getMainLooper()).post(Runnable {
+                                val intent = Intent(applicationContext, AlertActivity::class.java)
+                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                                applicationContext.startActivity(intent)
+                            })
+                        }
+
+                    }
 
                 } else {
                     Log.d("TAG", "getCurrentWeather: ${response.body()}")

@@ -7,6 +7,7 @@ import android.content.SharedPreferences
 import android.media.Ringtone
 import android.os.Build
 import android.util.Log
+import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.preference.PreferenceManager
@@ -51,27 +52,6 @@ class PeriodiWorker(context: Context, params: WorkerParameters) : Worker(context
         try {
             loadSettings()
             getResponseFromApi()
-
-            val currentTime = Calendar.getInstance().timeInMillis
-
-            if (listOfAlerts?.isNotEmpty() == true) { // de fe 7alet lw fe alerts rag3a m3 el response
-                if ((currentTime <= listOfAlerts?.get(0)?.end!!) && (currentTime >= listOfAlerts?.get(
-                        0
-                    )?.end!!)
-                ) {
-                    makeStatusNotification(
-                        listOfAlerts!![0].event,
-                        listOfAlerts!![0].description,
-                        applicationContext
-                    )
-                }
-            } else {  //de fe 7alet en mfish alerts rag3a m3 el response
-                makeStatusNotification(
-                    changinglanguageOfTitle(),
-                    changinglanguageOfMessage(),
-                    applicationContext
-                )
-            }
 
             return Result.success()
 
@@ -190,6 +170,10 @@ class PeriodiWorker(context: Context, params: WorkerParameters) : Worker(context
 
     }
 
+
+    //68.3963
+    //36.9419
+
     fun getResponseFromApi() {
         GlobalScope.launch(Dispatchers.IO) {
             val response = RetrofitClient.getWeatherService(
@@ -206,6 +190,38 @@ class PeriodiWorker(context: Context, params: WorkerParameters) : Worker(context
                     Log.d("response", "getResponseFromApi: ${response.body()}")
 
                     listOfAlerts = response.body()?.alerts
+                    val currentTime = Calendar.getInstance().timeInMillis
+                    Log.d("workInProgress", "getResponseFromApi: $currentTime")
+
+                    if (listOfAlerts?.isNotEmpty() == true) { // de fe 7alet lw fe alerts rag3a m3 el response
+
+                        Log.d("insideAlertAndBeforeFor", "insideAlertAndBeforeFor")
+                        for (item in listOfAlerts!!){
+                            if ((currentTime <= item.end *1000) && (currentTime >= item.start *1000)
+                            ) {
+                                Log.d("afterFor", "insideAlertAndBeforeFor")
+
+                                makeStatusNotification(
+                                    item.event,
+                                    item.description,
+                                    applicationContext
+                                )
+                            }else{
+                                makeStatusNotification(
+                                    changinglanguageOfTitle(),
+                                    changinglanguageOfMessage(),
+                                    applicationContext
+                                )
+                            }
+                    }
+                    } else {  //de fe 7alet en mfish alerts rag3a m3 el response
+                        Log.d("elseInWorker", "else condition in worker")
+                        makeStatusNotification(
+                            changinglanguageOfTitle(),
+                            changinglanguageOfMessage(),
+                            applicationContext
+                        )
+                    }
 
                 } else {
                     Log.d("TAG", "getCurrentWeather: ${response.body()}")

@@ -25,6 +25,7 @@ import com.haithamghanem.weatherwizard.R
 import com.haithamghanem.weatherwizard.data.model.DataSettings
 import com.haithamghanem.weatherwizard.data.network.Connectivity
 import com.haithamghanem.weatherwizard.ui.MainActivity
+import com.haithamghanem.weatherwizard.ui.weather.features.alerts.AlertFragment
 import com.haithamghanem.weatherwizard.ui.weather.features.alerts.PeriodiWorker
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -41,7 +42,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         get() = PreferenceManager.getDefaultSharedPreferences(this.context)
 
     companion object{
-        private var isFirstTime:Boolean = true
+        private var isFirstTime = true
         var unitChanged:String = "en"
     }
 
@@ -74,19 +75,19 @@ class SettingsFragment : PreferenceFragmentCompat() {
                     Toast.LENGTH_LONG
                 ).show()
             } else {
-//                if(isFirstTime) {
-//                    AlertDialog.Builder(this.requireContext())
-//                        .setTitle(changinglanguageOfTitle())
-//                        .setMessage(changinglanguageOfMessage())
-//                        .setPositiveButton(R.string.ok) { dialogInterface: DialogInterface?, i: Int ->
-//                            Toast.makeText(
-//                                this.requireContext(),
-//                                R.string.mapActivated,
-//                                Toast.LENGTH_LONG
-//                            ).show()
-//                        }.create().show()
-//                    isFirstTime = false
-//                }
+                if(isFirstTime) {
+                    AlertDialog.Builder(this.requireContext())
+                        .setTitle(changinglanguageOfTitle())
+                        .setMessage(changinglanguageOfMessage())
+                        .setPositiveButton(R.string.ok) { dialogInterface: DialogInterface?, i: Int ->
+                            Toast.makeText(
+                                this.requireContext(),
+                                R.string.mapActivated,
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }.create().show()
+                    isFirstTime = false
+                }
 
                 val customLocationMapFragment=CustomLocationMapFragment()
                 activity?.supportFragmentManager?.beginTransaction()
@@ -100,7 +101,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
         val notification: Preference? = findPreference("USE_NOTIFICATIONS_ALERT")
         notification?.onPreferenceClickListener = Preference.OnPreferenceClickListener {
 
-                if(prefrences.getBoolean("USE_NOTIFICATIONS_ALERT", false) == false) {
+
+            if(prefrences.getBoolean("USE_NOTIFICATIONS_ALERT", false) == false) {
 //                    Toast.makeText(this.requireContext(), "ana hena", Toast.LENGTH_SHORT).show()
                     WorkManager.getInstance(this.requireContext())
                         .cancelAllWorkByTag("periodicWorkRequest")
@@ -173,6 +175,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
 
 
+
+
+
     private fun setPeriodicWorkRequest() {
         val constraints =
             Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
@@ -182,7 +187,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
         val workManager: WorkManager? = this.context?.let { WorkManager.getInstance(it) }
         val periodicWorkRequest = PeriodicWorkRequest.Builder(
-            PeriodiWorker::class.java, 3,
+            PeriodiWorker::class.java, 1,
             TimeUnit.HOURS
         ).setConstraints(constraints)
             .addTag("periodicWorkRequest")

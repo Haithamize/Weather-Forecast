@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.haithamghanem.weatherwizard.R
@@ -142,21 +143,23 @@ class FavoritePlaces : Fragment() ,FavoritePlacesFragmentAdapter.OnItemClickList
 
     }
 
-    override fun onItemClick(position: Int) {
+    override fun onItemClick(position: Int, view: View) {
         if (Connectivity.isOnline(this.requireContext())) {
-            Log.d("FavoAdapter", "onBindViewHolder: Clicked in adapter")
+            Log.d("FavoAdapter", "${listOfFavoriteEntities[position].lat} // ${listOfFavoriteEntities[position].lon}")
+
 
             favoritePlaceViewModel.setFavoriteDetailsData(
                 listOfFavoriteEntities[position].lat,
                 listOfFavoriteEntities[position].lon
             )
 
-            val favoriteDetailsFragment = FavoriteDetailsFragment()
-            activity?.supportFragmentManager?.beginTransaction()
-                ?.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
-                ?.replace(R.id.favPlacesFrameLayout, favoriteDetailsFragment)
-                ?.addToBackStack("favoriteDetailsFragment")
-                ?.commit()
+            Navigation.findNavController(view).navigate(R.id.action_favourite_to_favoriteDetailsFragment)
+//            val favoriteDetailsFragment = FavoriteDetailsFragment()
+//            activity?.supportFragmentManager?.beginTransaction()
+//                ?.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+//                ?.replace(R.id.favPlacesFrameLayout, favoriteDetailsFragment)
+//                ?.addToBackStack("favoriteDetailsFragment")
+//                ?.commit()
         } else {
             Toast.makeText(this.requireContext(), R.string.offlineNotification, Toast.LENGTH_LONG)
                 .show()

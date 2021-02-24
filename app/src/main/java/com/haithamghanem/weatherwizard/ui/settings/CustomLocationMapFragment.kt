@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -17,6 +18,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.MarkerOptions
 import com.haithamghanem.weatherwizard.R
 import com.haithamghanem.weatherwizard.data.model.DataSettings
+import com.haithamghanem.weatherwizard.data.network.Connectivity
 import com.haithamghanem.weatherwizard.ui.MainActivity
 import com.haithamghanem.weatherwizard.ui.weather.current.CurrentWeatherViewModel
 import kotlinx.android.synthetic.main.favorite_fragment_map.*
@@ -26,6 +28,7 @@ import java.util.*
 
 class CustomLocationMapFragment : Fragment() {
 
+    val connectivity = Connectivity
     val dataSettings= DataSettings
     var markerLatitude: Double = 0.0
     var markerLongitude: Double = 0.0
@@ -44,6 +47,14 @@ class CustomLocationMapFragment : Fragment() {
         currentWeatherViewModel = ViewModelProvider(this).get(CurrentWeatherViewModel::class.java)
 
         goToCustomLocation.setOnClickListener {
+            if(markerLatitude == 0.0 && markerLongitude==0.0){
+                Toast.makeText(this.requireContext(), "You have to choose a location.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if(!connectivity.isOnline(this.requireContext())){
+                Toast.makeText(this.requireContext(),"You're offline.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             dataSettings.latitude = markerLatitude
             dataSettings.longitude = markerLongitude
 

@@ -1,5 +1,6 @@
 package com.haithamghanem.weatherwizard.ui
 
+import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -12,6 +13,7 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import androidx.preference.PreferenceManager
 import com.haithamghanem.weatherwizard.R
+import com.haithamghanem.weatherwizard.constants_and_utilities.HelperClass
 import com.haithamghanem.weatherwizard.data.model.DataSettings
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
@@ -83,6 +85,15 @@ class MainActivity : AppCompatActivity() {
         configuration.locale = locale
         resources.updateConfiguration(configuration, resources.displayMetrics)
     }
+
+    override fun attachBaseContext(newBase: Context?) {
+        val sp = PreferenceManager.getDefaultSharedPreferences(newBase)
+        val lang = sp.getString("LANGUAGE_SYSTEM", Locale.getDefault().language)!!
+        val context: Context = HelperClass.changeLang(newBase!!, Locale(lang))
+        super.attachBaseContext(context)
+
+    }
+
 
 
 

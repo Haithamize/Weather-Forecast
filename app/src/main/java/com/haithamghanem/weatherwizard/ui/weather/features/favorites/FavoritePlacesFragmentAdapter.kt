@@ -45,7 +45,7 @@ class FavoritePlacesFragmentAdapter(
         get() = PreferenceManager.getDefaultSharedPreferences(this.context)
 
     interface OnItemClickListener {
-        fun onItemClick(position: Int)
+        fun onItemClick(position: Int, view: View)
     }
 
 
@@ -116,7 +116,7 @@ class FavoritePlacesFragmentAdapter(
 
         holder.goToDetailsFragment.setOnClickListener {
             if (position != RecyclerView.NO_POSITION) {
-                listner.onItemClick(position)
+                listner.onItemClick(position, it)
             }
         }
 
@@ -224,16 +224,6 @@ class FavoritePlacesFragmentAdapter(
         notifyDataSetChanged()
     }
 
-    fun setData(detailsEntryResponse: FullDetailsResponse?) {
-        if (detailsEntryResponse != null) {
-            Log.d("singleEntityResponse", "${detailsEntryResponse}")
-            singleEntityDetailsResponse = detailsEntryResponse
-        }
-    }
-
-    fun getFavoriteEntityPosition(position: Int): FavoritePlaceEntity {
-        return arrayListOfFavoriteEntities[position]
-    }
 
     private fun loadSettings() {
         val sp = PreferenceManager.getDefaultSharedPreferences(context)

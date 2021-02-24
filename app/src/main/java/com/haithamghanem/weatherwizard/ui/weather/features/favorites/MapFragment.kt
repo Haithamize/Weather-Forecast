@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
@@ -17,6 +18,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.haithamghanem.weatherwizard.R
 import com.haithamghanem.weatherwizard.data.local.FavoritePlaceEntity
 import com.haithamghanem.weatherwizard.data.model.DataSettings
+import com.haithamghanem.weatherwizard.data.network.Connectivity
 import kotlinx.android.synthetic.main.favorite_fragment_map.*
 import java.util.*
 
@@ -31,6 +33,8 @@ class MapFragment : Fragment() {
     lateinit var favoritePlaceViewModel: FavoritePlaceViewModel
     private lateinit var favoritePlaceObject: FavoritePlaceEntity
     private var city: String = ""
+
+    val connectivity = Connectivity
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,6 +53,14 @@ class MapFragment : Fragment() {
         initComponents()
 
         saveLocationBtn.setOnClickListener {
+            if(markerLatitude == 0.0 && markerLongitude==0.0){
+                Toast.makeText(this.requireContext(),"You have to choose a location.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if(!connectivity.isOnline(this.requireContext())){
+                Toast.makeText(this.requireContext(),"You're offline.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             dataSettings.favoriteLatitude = markerLatitude
             dataSettings.favoriteLongitude = markerLongitude
 
@@ -97,7 +109,9 @@ class MapFragment : Fragment() {
                 "Location saved successfully!",
                 Toast.LENGTH_SHORT
             ).show()
-            activity?.onBackPressed()
+//            activity?.onBackPressed()
+            Navigation.findNavController(it).navigateUp()
+
         }
 
         var supportMapFragment =

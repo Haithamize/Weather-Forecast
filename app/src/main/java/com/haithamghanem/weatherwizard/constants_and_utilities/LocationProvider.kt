@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
@@ -11,6 +12,7 @@ import androidx.constraintlayout.motion.widget.Debug.getLocation
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.*
 import com.haithamghanem.weatherwizard.data.model.DataSettings
+import com.haithamghanem.weatherwizard.ui.MainActivity
 import com.haithamghanem.weatherwizard.ui.weather.current.LOCATION_REQUEST_CODE
 
 object LocationProvider {
@@ -55,6 +57,7 @@ object LocationProvider {
                     dataSettings.latitude = it.latitude
                     dataSettings.longitude = it.longitude
                      Log.d("LocationCallBack", "${it.latitude} : ${it.latitude}")
+
                 }
             }
 

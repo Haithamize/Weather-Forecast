@@ -61,6 +61,7 @@ class FavoritePlaceViewModel(application: Application) : AndroidViewModel(applic
         }
     }
 
+
     fun getLocalDataSource(): LiveData<List<FavoritePlaceEntity>>{
         return db.currentWeatherDao().getAllFavoritePlaces()
     }

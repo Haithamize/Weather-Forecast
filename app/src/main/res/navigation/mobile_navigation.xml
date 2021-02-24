@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_favourite_to_favoriteDetailsFragment"
             app:destination="@id/favoriteDetailsFragment" />
+        <action
+            android:id="@+id/action_favourite_to_mapFragment2"
+            app:destination="@id/mapFragment" />
     </fragment>
     <fragment
         android:id="@+id/alerts"
